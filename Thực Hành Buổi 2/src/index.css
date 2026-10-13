@@ -690,6 +690,23 @@ p {
   }
 }
 
+/* Danh sách ảo hoá: mỗi hàng cao cố định nên tên bài / thông tin phụ chỉ hiện trên một dòng */
+.task-list--virtual .task {
+  grid-template-columns: 44px minmax(0, 1fr) auto 44px 44px;
+  grid-template-areas: 'check main due pin del';
+  border-top: 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.task-list--virtual .task__title,
+.task-list--virtual .task__meta {
+  flex-wrap: nowrap;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 /* ---------- Thống kê ---------- */
 
 .stats {

@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { useAppDispatch } from './app/hooks';
 import { fetchAssignments } from './features/assignments/assignmentsSlice';
 import { AssignmentForm } from './features/assignments/components/AssignmentForm';
 import { AssignmentList } from './features/assignments/components/AssignmentList';
 import { FilterTabs } from './features/assignments/components/FilterTabs';
 import { StressTestButton } from './features/assignments/components/StressTestButton';
-import { StatsPage } from './features/stats/StatsPage';
 import { ThemeToggle } from './theme/ThemeToggle';
+
+// Tách trang Thống kê thành chunk riêng, chỉ tải khi người dùng mở trang
+const StatsPage = lazy(() => import('./features/stats/StatsPage').then((m) => ({ default: m.StatsPage })));
 
 type View = 'list' | 'stats';
 
@@ -56,7 +58,9 @@ export default function App() {
 
       {view === 'stats' ? (
         <main>
-          <StatsPage />
+          <Suspense fallback={<p className="empty" role="status">Đang tải trang thống kê…</p>}>
+            <StatsPage />
+          </Suspense>
         </main>
       ) : (
         <main className="layout">

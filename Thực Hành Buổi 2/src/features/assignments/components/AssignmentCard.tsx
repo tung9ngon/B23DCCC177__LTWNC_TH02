@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, memo, useContext, type CSSProperties } from 'react';
 import { usePinStore } from '../../pins/usePinStore';
 import { calcDaysLeft, formatDate, formatDaysLeft, isOverdue } from '../deadline';
 import { PRIORITIES, PRIORITY_LABELS, type Assignment } from '../types';
@@ -20,10 +20,16 @@ interface AssignmentCardProps {
   assignment: Assignment;
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
+  /** Vị trí do react-window tính khi danh sách được ảo hoá */
+  style?: CSSProperties;
 }
 
-/** Thẻ bài tập ghép từ các phần con dùng chung Context (Compound Component) */
-export function AssignmentCard({ assignment, onToggle, onDelete }: AssignmentCardProps) {
+/**
+ * Thẻ bài tập ghép từ các phần con dùng chung Context (Compound Component).
+ * React.memo: thẻ chỉ render lại khi assignment (Immer giữ nguyên tham chiếu bài không đổi) hoặc
+ * handler đổi — nên AssignmentList phải truyền handler đã bọc useCallback.
+ */
+export const AssignmentCard = memo(function AssignmentCard({ assignment, onToggle, onDelete, style }: AssignmentCardProps) {
   const daysLeft = calcDaysLeft(assignment.deadline);
   const className = ['task', assignment.completed && 'is-done', isOverdue(assignment) && 'is-overdue']
     .filter(Boolean)
@@ -31,7 +37,7 @@ export function AssignmentCard({ assignment, onToggle, onDelete }: AssignmentCar
 
   return (
     <AssignmentCardContext.Provider value={{ assignment, daysLeft }}>
-      <li className={className}>
+      <li className={className} style={style}>
         <Toggle onToggle={onToggle} />
         <div className="task__main">
           <Title />
@@ -47,7 +53,7 @@ export function AssignmentCard({ assignment, onToggle, onDelete }: AssignmentCar
       </li>
     </AssignmentCardContext.Provider>
   );
-}
+});
 
 function Toggle({ onToggle }: { onToggle: (id: string) => void }) {
   const { assignment } = useAssignmentCard();

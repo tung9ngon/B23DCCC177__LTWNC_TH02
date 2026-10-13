@@ -1,4 +1,4 @@
-import { act, screen, within } from '@testing-library/react';
+import { act, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { makeAssignment, makeStore, renderWithStore } from '../../../test/utils';
 import { usePinStore } from '../../pins/usePinStore';
@@ -66,17 +66,30 @@ describe('AssignmentList: tìm kiếm và ghim', () => {
     expect(titles()).toEqual(['Quiz chương 3', 'Bài thực hành Redux', 'Cài đặt A*']);
   });
 
-  it('lọc theo từ khoá; không có kết quả thì báo rõ', async () => {
+  it('lọc theo từ khoá (sau debounce); không có kết quả thì báo rõ', async () => {
     const user = userEvent.setup();
     renderWithStore(<AssignmentList />, makeStore({ items }));
     const search = screen.getByRole('searchbox', { name: 'Tìm bài tập' });
 
     await user.type(search, 'trí tuệ');
-    expect(await screen.findAllByRole('heading')).toHaveLength(2);
+    await waitFor(() => expect(screen.getAllByRole('heading')).toHaveLength(2));
     expect(within(screen.getByRole('list')).queryByText('Bài thực hành Redux')).not.toBeInTheDocument();
 
     await user.clear(search);
     await user.type(search, 'java');
     expect(await screen.findByText('Không có bài tập nào khớp "java".')).toBeInTheDocument();
+  });
+});
+
+describe('AssignmentList: danh sách lớn', () => {
+  it('ảo hoá bằng react-window: 10.000 bài nhưng chỉ render vài chục thẻ', () => {
+    const items = Array.from({ length: 10_000 }, (_, i) => makeAssignment({ title: `Bài stress ${i + 1}` }));
+    renderWithStore(<AssignmentList />, makeStore({ items }));
+
+    const rendered = screen.getAllByRole('listitem');
+    expect(rendered.length).toBeGreaterThan(0);
+    expect(rendered.length).toBeLessThan(30);
+    expect(screen.getByRole('heading', { name: 'Bài stress 1' })).toBeInTheDocument();
+    expect(screen.queryByRole('heading', { name: 'Bài stress 10000' })).not.toBeInTheDocument();
   });
 });

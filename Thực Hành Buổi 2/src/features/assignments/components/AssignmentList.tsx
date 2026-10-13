@@ -1,5 +1,7 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
+import { List, type RowComponentProps } from 'react-window';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { useDebounce } from '../../../hooks/useDebounce';
 import { sortPinnedFirst, usePinStore } from '../../pins/usePinStore';
 import {
   deleteAssignment,
@@ -10,7 +12,7 @@ import {
   toggleAssignment,
 } from '../assignmentsSlice';
 import { matchesSearch } from '../deadline';
-import type { FilterStatus } from '../types';
+import type { Assignment, FilterStatus } from '../types';
 import { AssignmentCard } from './AssignmentCard';
 
 const EMPTY_MESSAGES: Record<FilterStatus, string> = {
@@ -19,6 +21,21 @@ const EMPTY_MESSAGES: Record<FilterStatus, string> = {
   overdue: 'Không có bài nào quá hạn.',
   completed: 'Chưa có bài nào được đánh dấu hoàn thành.',
 };
+
+/** Từ ngưỡng này mới ảo hoá; danh sách ngắn render thường để giữ thẻ cao tự do (tên bài xuống dòng) */
+const VIRTUALIZE_FROM = 100;
+const ROW_HEIGHT = 72;
+const LIST_HEIGHT = 640;
+
+interface RowProps {
+  items: Assignment[];
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
+}
+
+function Row({ index, style, items, onToggle, onDelete }: RowComponentProps<RowProps>) {
+  return <AssignmentCard assignment={items[index]} style={style} onToggle={onToggle} onDelete={onDelete} />;
+}
 
 function LoadingRows() {
   return (
@@ -54,20 +71,45 @@ export function AssignmentList() {
   const assignments = useAppSelector(selectVisibleAssignments);
   const pinnedIds = usePinStore((state) => state.pinnedIds);
   const [query, setQuery] = useState('');
+  // Ô nhập vẫn cập nhật ngay; chỉ lọc lại khi ngừng gõ 300 ms
+  const debouncedQuery = useDebounce(query, 300);
 
-  const visible = sortPinnedFirst(
-    assignments.filter((a) => matchesSearch(a, query)),
-    pinnedIds,
+  const visible = useMemo(
+    () =>
+      sortPinnedFirst(
+        assignments.filter((a) => matchesSearch(a, debouncedQuery)),
+        pinnedIds,
+      ),
+    [assignments, debouncedQuery, pinnedIds],
   );
 
-  const handleToggle = (id: string) => dispatch(toggleAssignment(id));
-  const handleDelete = (id: string) => dispatch(deleteAssignment(id));
+  // Giữ nguyên tham chiếu qua các lần render để React.memo của AssignmentCard có tác dụng
+  const handleToggle = useCallback((id: string) => dispatch(toggleAssignment(id)), [dispatch]);
+  const handleDelete = useCallback((id: string) => dispatch(deleteAssignment(id)), [dispatch]);
 
   let content;
   if (status === 'loading') content = <LoadingRows />;
   else if (status === 'failed') content = <p className="empty empty--error">{error}</p>;
   else if (visible.length === 0)
-    content = <p className="empty">{query.trim() ? `Không có bài tập nào khớp "${query.trim()}".` : EMPTY_MESSAGES[filter]}</p>;
+    content = (
+      <p className="empty">
+        {debouncedQuery.trim() ? `Không có bài tập nào khớp "${debouncedQuery.trim()}".` : EMPTY_MESSAGES[filter]}
+      </p>
+    );
+  else if (visible.length >= VIRTUALIZE_FROM)
+    // Chỉ render số hàng nhìn thấy (+ vài hàng dự phòng) thay vì cả 10.000 thẻ
+    content = (
+      <List
+        tagName="ul"
+        className="task-list task-list--virtual"
+        style={{ height: LIST_HEIGHT }}
+        rowComponent={Row}
+        rowCount={visible.length}
+        rowHeight={ROW_HEIGHT}
+        rowProps={{ items: visible, onToggle: handleToggle, onDelete: handleDelete }}
+        overscanCount={5}
+      />
+    );
   else
     content = (
       <ul className="task-list">
