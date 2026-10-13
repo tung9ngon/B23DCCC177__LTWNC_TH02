@@ -1,0 +1,176 @@
+[
+  {
+    "run": 1,
+    "theme": {
+      "commits": 1,
+      "cardRenders": 0,
+      "components": {
+        "ThemeProvider": 1,
+        "ThemeToggle": 1
+      },
+      "maxCommitMs": 0.20000004768371582,
+      "totalCommitMs": 0.20000004768371582,
+      "domNodes": 277,
+      "cardsInDom": 8
+    },
+    "stress": {
+      "commits": 1,
+      "cardRenders": 10008,
+      "components": {
+        "AssignmentForm": 1,
+        "FilterTabs": 1,
+        "AssignmentList": 1,
+        "AssignmentCard": 10008,
+        "Toggle": 10008,
+        "Title": 10008,
+        "Subject": 10008,
+        "Priority": 10008,
+        "Status": 10008,
+        "Deadline": 10008,
+        "Pin": 10008,
+        "Delete": 10008
+      },
+      "maxCommitMs": 2031.1000006198883,
+      "totalCommitMs": 2031.1000006198883,
+      "domNodes": 239232,
+      "cardsInDom": 10008
+    },
+    "typing": {
+      "commits": 3,
+      "cardRenders": 15151,
+      "components": {
+        "AssignmentList": 3,
+        "AssignmentCard": 15151,
+        "Toggle": 15151,
+        "Title": 15151,
+        "Subject": 15151,
+        "Priority": 15151,
+        "Status": 15151,
+        "Deadline": 15151,
+        "Pin": 15151,
+        "Delete": 15151
+      },
+      "maxCommitMs": 1144.8999999761581,
+      "totalCommitMs": 2360.3999996185303,
+      "domNodes": 95676,
+      "cardsInDom": 4002
+    },
+    "matchedInDom": 4002
+  },
+  {
+    "run": 2,
+    "theme": {
+      "commits": 1,
+      "cardRenders": 0,
+      "components": {
+        "ThemeProvider": 1,
+        "ThemeToggle": 1
+      },
+      "maxCommitMs": 0.30000007152557373,
+      "totalCommitMs": 0.30000007152557373,
+      "domNodes": 277,
+      "cardsInDom": 8
+    },
+    "stress": {
+      "commits": 1,
+      "cardRenders": 10008,
+      "components": {
+        "AssignmentForm": 1,
+        "FilterTabs": 1,
+        "AssignmentList": 1,
+        "AssignmentCard": 10008,
+        "Toggle": 10008,
+        "Title": 10008,
+        "Subject": 10008,
+        "Priority": 10008,
+        "Status": 10008,
+        "Deadline": 10008,
+        "Pin": 10008,
+        "Delete": 10008
+      },
+      "maxCommitMs": 1940.8999993801117,
+      "totalCommitMs": 1940.8999993801117,
+      "domNodes": 239538,
+      "cardsInDom": 10008
+    },
+    "typing": {
+      "commits": 3,
+      "cardRenders": 15151,
+      "components": {
+        "AssignmentList": 3,
+        "AssignmentCard": 15151,
+        "Toggle": 15151,
+        "Title": 15151,
+        "Subject": 15151,
+        "Priority": 15151,
+        "Status": 15151,
+        "Deadline": 15151,
+        "Pin": 15151,
+        "Delete": 15151
+      },
+      "maxCommitMs": 1086.4000002145767,
+      "totalCommitMs": 2299.1999989748,
+      "domNodes": 95817,
+      "cardsInDom": 4002
+    },
+    "matchedInDom": 4002
+  },
+  {
+    "run": 3,
+    "theme": {
+      "commits": 1,
+      "cardRenders": 0,
+      "components": {
+        "ThemeProvider": 1,
+        "ThemeToggle": 1
+      },
+      "maxCommitMs": 0.40000009536743164,
+      "totalCommitMs": 0.40000009536743164,
+      "domNodes": 277,
+      "cardsInDom": 8
+    },
+    "stress": {
+      "commits": 1,
+      "cardRenders": 10008,
+      "components": {
+        "AssignmentForm": 1,
+        "FilterTabs": 1,
+        "AssignmentList": 1,
+        "AssignmentCard": 10008,
+        "Toggle": 10008,
+        "Title": 10008,
+        "Subject": 10008,
+        "Priority": 10008,
+        "Status": 10008,
+        "Deadline": 10008,
+        "Pin": 10008,
+        "Delete": 10008
+      },
+      "maxCommitMs": 1966.6999987363815,
+      "totalCommitMs": 1966.6999987363815,
+      "domNodes": 239178,
+      "cardsInDom": 10008
+    },
+    "typing": {
+      "commits": 3,
+      "cardRenders": 15151,
+      "components": {
+        "AssignmentList": 3,
+        "AssignmentCard": 15151,
+        "Toggle": 15151,
+        "Title": 15151,
+        "Subject": 15151,
+        "Priority": 15151,
+        "Status": 15151,
+        "Deadline": 15151,
+        "Pin": 15151,
+        "Delete": 15151
+      },
+      "maxCommitMs": 1173.7999995946884,
+      "totalCommitMs": 2397.1000002622604,
+      "domNodes": 95721,
+      "cardsInDom": 4002
+    },
+    "matchedInDom": 4002
+  }
+]

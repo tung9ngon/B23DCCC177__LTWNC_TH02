@@ -1,0 +1,15 @@
+[startGroup] action assignments/addAssignment @ 14:06:36.733
+[log] prev state { assignments: { items: [8 bài; bài đầu: "Bài thực hành Redux Toolkit", completed: false], filter: 'all', status: 'succeeded', error: null } }
+[log] action {"type":"assignments/addAssignment","payload":{"subject":"Lập trình Web nâng cao","title":"Đo hiệu năng redux-logger","deadline":"2026-10-20","priority":"medium","id":"nxHbnWcG4h6boynSP-0oS","completed":false}}
+[log] next state { assignments: { items: [9 bài; bài đầu: "Đo hiệu năng redux-logger", completed: false], filter: 'all', status: 'succeeded', error: null } }
+[endGroup] console.groupEnd
+[startGroup] action assignments/toggleAssignment @ 14:06:37.157
+[log] prev state { assignments: { items: [9 bài; bài đầu: "Đo hiệu năng redux-logger", completed: false], filter: 'all', status: 'succeeded', error: null } }
+[log] action {"type":"assignments/toggleAssignment","payload":"nxHbnWcG4h6boynSP-0oS"}
+[log] next state { assignments: { items: [9 bài; bài đầu: "Đo hiệu năng redux-logger", completed: true], filter: 'all', status: 'succeeded', error: null } }
+[endGroup] console.groupEnd
+[startGroup] action assignments/deleteAssignment @ 14:06:37.624
+[log] prev state { assignments: { items: [9 bài; bài đầu: "Đo hiệu năng redux-logger", completed: true], filter: 'all', status: 'succeeded', error: null } }
+[log] action {"type":"assignments/deleteAssignment","payload":"nxHbnWcG4h6boynSP-0oS"}
+[log] next state { assignments: { items: [8 bài; bài đầu: "Bài thực hành Redux Toolkit", completed: false], filter: 'all', status: 'succeeded', error: null } }
+[endGroup] console.groupEnd

@@ -96,16 +96,16 @@ Không thêm `useMemo` cho `calcStats` trong StatsPage: trang chỉ render lại
 1. Số lần render của `AssignmentCard` khi gõ tìm kiếm: `npm run dev` → bấm "Tạo 10.000 bài tập mẫu" → Profiler → Record → gõ `bài` vào ô tìm kiếm → Stop → xem số commit và số lần `AssignmentCard` render (tab Ranked / chọn component → "Rendered at").
 2. Điểm Performance: `npm run build && npm run preview` (bản production, không có logger) → Lighthouse → chế độ **Timespan** → Start → bấm "Tạo 10.000 bài tập mẫu" → gõ `bài` → End. Ghi điểm Performance, TBT, INP.
 
-**Bảng so sánh** (các ô `[thiếu]` do người làm bài đo rồi điền; bundle chính tăng vì thêm react-window):
+**Kết quả đo** (trung vị 3 lần, ngày 13/10/2026; phương pháp, số liệu đầy đủ và report Lighthouse ở [bao-cao/BAO_CAO_DO_HIEU_NANG.md](bao-cao/BAO_CAO_DO_HIEU_NANG.md)):
 
 | Chỉ số | Trước (bước 1) | Sau (bước 2) |
 |---|---|---|
-| Số lần render `AssignmentCard` khi gõ `bài` (10.000 bài) | [thiếu: đo bằng Profiler] | [thiếu: đo bằng Profiler] |
-| Số commit khi gõ `bài` | [thiếu] | [thiếu] |
-| Thời gian commit lớn nhất (ms) | [thiếu] | [thiếu] |
-| Lighthouse Performance (Timespan) | [thiếu] | [thiếu] |
-| Total Blocking Time (ms) | [thiếu] | [thiếu] |
-| Bundle JS chính (output `npm run build`) | 278.17 kB (gzip 88.58 kB) | 289.42 kB (gzip 92.60 kB) + chunk `StatsPage` 1.99 kB (gzip 0.84 kB) |
+| Số lần render `AssignmentCard` khi gõ `bài` (10.008 bài) | 15.151 | 28 |
+| Lighthouse Performance — Navigation, trang có 10.008 bài | 68 | 98 |
+| Lighthouse Performance — Timespan (tạo 10.000 bài + gõ `bài`) | 45 | 97 |
+| Total Blocking Time — Navigation | 4.905,1 ms | 14,5 ms |
+| Số phần tử DOM với 10.008 bài | 239.201 | 412 |
+| Bundle JS chính (gzip) | 88,58 kB | 92,60 kB + chunk `StatsPage` 0,84 kB |
 
 ### Phần C — Kiểm thử
 

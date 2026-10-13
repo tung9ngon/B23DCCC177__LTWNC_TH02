@@ -1,0 +1,92 @@
+[
+  {
+    "run": 1,
+    "nav": {
+      "score": 0.68,
+      "throttling": "simulate",
+      "formFactor": "mobile",
+      "fcp": 1856.862,
+      "lcp": 1856.862,
+      "tbt": 5158.459,
+      "cls": 0,
+      "si": 2485.022,
+      "inp": null,
+      "domSize": "239315",
+      "mainThread": 10257.108,
+      "itemsAfterLoad": "10008"
+    },
+    "span": {
+      "score": 0.45,
+      "throttling": "devtools",
+      "formFactor": "mobile",
+      "fcp": null,
+      "lcp": null,
+      "tbt": 16458.601,
+      "cls": 0.044,
+      "si": null,
+      "inp": 9381.421,
+      "domSize": "239141",
+      "mainThread": 18239.268
+    }
+  },
+  {
+    "run": 2,
+    "nav": {
+      "score": 0.68,
+      "throttling": "simulate",
+      "formFactor": "mobile",
+      "fcp": 1802.664,
+      "lcp": 1802.664,
+      "tbt": 4905.096,
+      "cls": 0,
+      "si": 2528.755,
+      "inp": null,
+      "domSize": "239201",
+      "mainThread": 9584.632,
+      "itemsAfterLoad": "10008"
+    },
+    "span": {
+      "score": 0.45,
+      "throttling": "devtools",
+      "formFactor": "mobile",
+      "fcp": null,
+      "lcp": null,
+      "tbt": 16424.554,
+      "cls": 0.044,
+      "si": null,
+      "inp": 9211.38,
+      "domSize": "239429",
+      "mainThread": 18166.37
+    }
+  },
+  {
+    "run": 3,
+    "nav": {
+      "score": 0.61,
+      "throttling": "simulate",
+      "formFactor": "mobile",
+      "fcp": 2716.914,
+      "lcp": 2866.914,
+      "tbt": 4063.575,
+      "cls": 0,
+      "si": 2716.914,
+      "inp": null,
+      "domSize": "238892",
+      "mainThread": 9481.756,
+      "itemsAfterLoad": "10008"
+    },
+    "span": {
+      "score": 0.45,
+      "throttling": "devtools",
+      "formFactor": "mobile",
+      "fcp": null,
+      "lcp": null,
+      "tbt": 17197.265,
+      "cls": 0.044,
+      "si": null,
+      "inp": 9354.789,
+      "domSize": "239315",
+      "mainThread": 18361.87
+    }
+  }
+]
