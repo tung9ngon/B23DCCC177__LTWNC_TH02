@@ -102,7 +102,7 @@ Không thêm `useMemo` cho `calcStats` trong StatsPage: trang chỉ render lại
 |---|---|---|
 | Số lần render `AssignmentCard` khi gõ `bài` (10.008 bài) | 15.151 | 28 |
 | Lighthouse Performance — Navigation, trang có 10.008 bài | 68 | 98 |
-| Lighthouse Performance — Timespan (tạo 10.000 bài + gõ `bài`) | 45 | 97 |
+| Lighthouse Timespan (tạo 10.000 bài + gõ `bài`), số audit đạt | 11/20 | 17/22 |
 | Total Blocking Time — Navigation | 4.905,1 ms | 14,5 ms |
 | Số phần tử DOM với 10.008 bài | 239.201 | 412 |
 | Bundle JS chính (gzip) | 88,58 kB | 92,60 kB + chunk `StatsPage` 0,84 kB |

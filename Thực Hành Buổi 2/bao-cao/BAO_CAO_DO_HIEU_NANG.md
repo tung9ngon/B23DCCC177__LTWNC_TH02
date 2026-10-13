@@ -131,14 +131,33 @@ Thời gian commit lấy từ `actualDuration` của fiber gốc. Đây là số
 | Số phần tử DOM | 239.201 | 412 |
 | Thời gian main thread | 9.584,6 ms | 682,5 ms |
 | **Timespan — tạo 10.000 bài + gõ `bài`** | | |
-| Điểm Performance (Timespan) | 45 | 97 |
+| Performance (Timespan) — số audit đạt, như report hiển thị¹ | 11/20 (cả 3 lần) | 17/22 (2 lần), 18/21 (1 lần) |
 | Total Blocking Time | 16.458,6 ms | 160,1 ms |
 | Interaction to Next Paint | 9.354,8 ms | 221,9 ms |
 | Cumulative Layout Shift | 0,044 | 0 |
 | Thời gian main thread | 18.239,3 ms | 493,2 ms |
 
-Điểm Navigation 3 lần: bước 1 = 68 / 68 / 61; bước 2 = 98 / 98 / 99. Report HTML (mở bằng trình duyệt) của lần chạy có TBT bằng trung vị:
-[buoc1-navigation.html](lighthouse/buoc1-navigation.html) · [buoc1-timespan.html](lighthouse/buoc1-timespan.html) · [buoc2-navigation.html](lighthouse/buoc2-navigation.html) · [buoc2-timespan.html](lighthouse/buoc2-timespan.html)
+Điểm Navigation 3 lần: bước 1 = 68 / 68 / 61; bước 2 = 98 / 98 / 99.
+
+¹ Ở chế độ Timespan, Lighthouse không hiện điểm 0–100 mà hiện số audit đạt trên tổng số audit áp dụng được (tổng thay đổi giữa các lần chạy). Trong file JSON vẫn có trường `categories.performance.score`: 0,45 ở bước 1 và 0,97 ở bước 2 (trung vị, xem [du-lieu/](du-lieu/)). Nhưng giao diện report không dùng con số này.
+
+**Ảnh chụp phần Performance của report** (lần chạy có TBT bằng trung vị):
+
+*Navigation — trước (bước 1): 68 điểm*
+
+![Lighthouse Navigation bước 1](anh/lighthouse/buoc1-navigation.png)
+
+*Navigation — sau (bước 2): 98 điểm*
+
+![Lighthouse Navigation bước 2](anh/lighthouse/buoc2-navigation.png)
+
+*Timespan — trước (bước 1): 11/20 audit đạt*
+
+![Lighthouse Timespan bước 1](anh/lighthouse/buoc1-timespan.png)
+
+*Timespan — sau (bước 2): 17/22 audit đạt*
+
+![Lighthouse Timespan bước 2](anh/lighthouse/buoc2-timespan.png)
 
 ### 2.4 Kích thước bundle (output `npm run build`)
 
